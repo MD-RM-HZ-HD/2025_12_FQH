@@ -18,7 +18,7 @@ function buildQuestionHTML(q, displayNumber) {
         inputsA += `
             <textarea id="blank-input-${q.id}-A-${index}" 
                    placeholder="اكتب (${criterion.label}) هنا..."
-                   class="p-2 border border-gray-300 rounded-lg text-right mb-2 bg-green-50 resize-none min-h-[75px] review-mode"
+                   class="p-2 border border-gray-300 rounded-lg text-right mb-2 bg-green-50 resize-none min-h-[75px] review-mode w-full"
                    rows="3"
                    data-correct-answer="${criterion.answerA}"
                    data-label="${criterion.label}"
@@ -27,7 +27,7 @@ function buildQuestionHTML(q, displayNumber) {
         inputsB += `
             <textarea id="blank-input-${q.id}-B-${index}" 
                    placeholder="اكتب (${criterion.label}) هنا..."
-                   class="p-2 border border-gray-300 rounded-lg text-right mb-2 bg-green-50 resize-none min-h-[75px] review-mode"
+                   class="p-2 border border-gray-300 rounded-lg text-right mb-2 bg-green-50 resize-none min-h-[75px] review-mode w-full"
                    rows="3"
                    data-correct-answer="${criterion.answerB}"
                    data-label="${criterion.label}"
@@ -36,34 +36,53 @@ function buildQuestionHTML(q, displayNumber) {
     });
 
     return `
-        <div class="question-card fill-blank container-main" id="q-card-${q.id}" style="padding: 1rem 1.5rem 1.5rem;">
-            <div class="flex justify-between items-center mb-4">
+        <div class="question-card fill-blank container-main w-full" id="q-card-${q.id}" 
+             style="padding: 1rem 1rem 1.5rem; box-sizing: border-box;">
+
+            <div class="flex justify-between items-center mb-4 w-full">
                 <div class="q-tag">
                     <span class="q-tag-word">السؤال</span>
                     <span class="q-tag-number">${displayNumber}</span>
                 </div>
-                <h2 class="question-title-highlight text-lg md:text-xl font-bold text-right" style="color: var(--text); flex-grow: 1; margin: 0 1rem; line-height: 1.6;">
+
+                <h2 class="question-title-highlight text-lg md:text-xl font-bold text-right"
+                    style="color: var(--text); flex-grow: 1; margin: 0 1rem; line-height: 1.6;">
                     ${q.title}
                 </h2>
             </div>
+
+            <!-- Responsive grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
-                <div class="comparison-box">
-                    <h3 class="text-xl font-bold mb-3 text-center card-title-review" style="color: var(--color-success-text);">${q.caseA_label}</h3>
-                    <div class="flex flex-col gap-3">
+                
+                <!-- BOX A -->
+                <div class="comparison-box w-full">
+                    <h3 class="text-xl font-bold mb-3 text-center card-title-review"
+                        style="color: var(--color-success-text);">
+                        ${q.caseA_label}
+                    </h3>
+                    <div class="flex flex-col gap-3 w-full">
                         ${inputsA}
                     </div>
                 </div>
-                <div class="comparison-box">
-                    <h3 class="text-xl font-bold mb-3 text-center card-title-review" style="color: var(--color-danger-text);">${q.caseB_label}</h3>
-                    <div class="flex flex-col gap-3">
+
+                <!-- BOX B -->
+                <div class="comparison-box w-full">
+                    <h3 class="text-xl font-bold mb-3 text-center card-title-review"
+                        style="color: var(--color-danger-text);">
+                        ${q.caseB_label}
+                    </h3>
+                    <div class="flex flex-col gap-3 w-full">
                         ${inputsB}
                     </div>
                 </div>
+
             </div>
+
             <p id="blank-feedback-${q.id}" class="mt-4 text-center font-bold" style="display: none;"></p>
         </div>
     `;
 }
+
 
 // 3. دالة عرض الأسئلة (كما هي)
 function renderPage(page = currentPage) {
@@ -289,5 +308,4 @@ document.head.insertAdjacentHTML('beforeend', `<style>
         color: #bbf7d0; 
         -webkit-text-fill-color: #bbf7d0;
     }
-
 </style>`);	
