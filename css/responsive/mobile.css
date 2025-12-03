@@ -532,8 +532,8 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0 !important;
     width: 100vw !important; /* Force full viewport width */
     max-width: 100vw !important;
+    overflow-wrap: break-word !important;
 }
-
 /* Grid Layout: Exactly 2 Columns */
 .comparison-options-wrapper {
     display: grid !important;
