@@ -1,8 +1,3 @@
-/* ==========================================================================
-   14. MANDATORY MOBILE FONT ENFORCEMENT
-   Target: Viewports < 768px
-   Action: Override all previous styles with !important
-   ========================================================================== */
 
 @media (max-width: 767px) {
     
