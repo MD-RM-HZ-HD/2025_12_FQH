@@ -46,7 +46,7 @@ function buildQuestionHTML(q, displayNumber) {
                     ${q.title}
                 </h2>
             </div>
-            <div class="grid grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
                 <div class="comparison-box">
                     <h3 class="text-xl font-bold mb-3 text-center card-title-review" style="color: var(--color-success-text);">${q.caseA_label}</h3>
                     <div class="flex flex-col gap-3">
@@ -289,4 +289,5 @@ document.head.insertAdjacentHTML('beforeend', `<style>
         color: #bbf7d0; 
         -webkit-text-fill-color: #bbf7d0;
     }
+
 </style>`);	
