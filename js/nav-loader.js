@@ -4,7 +4,7 @@
 const NAV_CONFIG = {
   mainLinks: [
     { href: 'index.html', label: 'الرئيسية', isRoot: true },
-    { href: 'source-text.html', label: 'النص' },
+    // Removed source-text.html as it is now the main index
     { href: 'mindmap.html', label: 'خريطة ذهنية' },
     { href: 'mindmap_interactive.html', label: 'خريطة ذهنية تفاعلية' },
   ],
@@ -196,7 +196,7 @@ function loadNavbar(options = {}) {
 
         // Active State Logic
         const isHomeActive = currentPath.endsWith('/') || currentPath.endsWith('index.html');
-        const isTextActive = currentPath.includes('source-text.html');
+        // REMOVED: isTextActive variable since source-text is now index
         const isMindMapActive = currentPath.includes('mindmap');
         const isQuizActive = currentPath.includes('qz-') || currentPath.includes('card-flip');
         
@@ -267,12 +267,7 @@ function loadNavbar(options = {}) {
                     </span>
                     <span class="label-text">إعدادات</span>
                 </button>
-                <a href="${buildPath('source-text.html', pageType)}" @click="activePopup = null" class="mobile-nav-item ${isTextActive ? 'active-tab' : ''}">
-                    <span class="icon-container">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
-                    </span>
-                    <span class="label-text">النص</span>
-                </a>
+                <!-- Removed the 'source-text' link that was here -->
                 <a href="${buildPath('index.html', pageType)}" @click="activePopup = null" class="mobile-nav-item ${isHomeActive ? 'active-tab' : ''}">
                     <span class="icon-container">
                         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
@@ -387,4 +382,5 @@ document.addEventListener('DOMContentLoaded', () => {
     // Listen for the very first interaction anywhere on the page
     document.addEventListener('click', enableFullscreen);
     document.addEventListener('touchstart', enableFullscreen);
+
 });

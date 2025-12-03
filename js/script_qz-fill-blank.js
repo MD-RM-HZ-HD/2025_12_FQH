@@ -230,10 +230,17 @@ function showFinalResults() {
     }
 
     if (nextQuestionBtn) nextQuestionBtn.style.display = 'none';
-    
-    // إخفاء الشريط الموحد عند النتائج (اختياري)
-    const statusBar = document.getElementById('status-bar-placeholder');
-    if(statusBar) statusBar.style.display = 'none';
+
+    // ✅ تحديث شريط الحالة ليعرض النتيجة النهائية 100% بدلاً من إخفائه
+    const progressFill = document.getElementById('progress-fill');
+    const progressText = document.getElementById('progress-text');
+    const scoreDisplay = document.getElementById('score-display');
+    const questionCounter = document.getElementById('question-counter');
+
+    if (progressFill) progressFill.style.width = '100%';
+    if (progressText) progressText.textContent = '100%';
+    if (scoreDisplay) scoreDisplay.textContent = finalScore;
+    if (questionCounter) questionCounter.textContent = `${finalScore} / ${totalQuestions}`;
 }
 
 function shuffleArray(array) {

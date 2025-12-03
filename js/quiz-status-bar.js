@@ -54,4 +54,5 @@ const QuizStatusBar = {
             </div>
         `;
     }
+
 };
