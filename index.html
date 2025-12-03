@@ -1,100 +1,422 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>تاريخ الإسلام</title>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <title>الذباحة</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
 </head>
-<body x-data="{ 'showIntroModal': true }">
-<div x-show="showIntroModal" 
-     style="display: none; background-color: rgba(0, 0, 0, 0.6);" 
-     class="fixed inset-0 z-[100] flex items-center justify-center p-4"
-     x-transition:enter="transition ease-out duration-300"
-     x-transition:enter-start="opacity-0"
-     x-transition:enter-end="opacity-100"
-     x-transition:leave="transition ease-in duration-200"
-     x-transition:leave-start="opacity-100"
-     x-transition:leave-end="opacity-0">
-    
-    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-md p-6 text-center"
-         @click.outside="showIntroModal = false"
-         x-transition:enter="transition ease-out duration-300"
-         x-transition:enter-start="opacity-0 scale-90"
-         x-transition:enter-end="opacity-100 scale-100"
-         x-transition:leave="transition ease-in duration-200"
-         x-transition:leave-start="opacity-100 scale-100"
-         x-transition:leave-end="opacity-0 scale-90">
-        
-        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">👋 تذكير </h3>
-        <p class="text-lg text-gray-700 dark:text-gray-200 mb-6">
-            اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَآلِ مُحَمَّدٍ
-        </p>
-        <button @click="showIntroModal = false" 
-                class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition-colors">
-وعَجِّلْ فَرَجَهُمْ
-        </button>
-    </div>
+
+<body class="min-h-screen" x-data="pageSettings" :class="{ 'dark': darkMode }"> 
+
+<div class="main-width-container pt-10"> 
+<div id="navbar-placeholder"></div>
+      
+    <div class="top-row">
+        <article class="content" 
+                 :style="{ 'fontSize': fontSize + 'px' }">
+<div x-data="accordionItem(true)" class="content-container">
+	<button @click="toggle()" class="accordion-button">
+		<div class="accordion-title-group">
+			<h2 class="section" :style="{ 'fontSize': fontSize + 'px' }">الذباحة</h2>
+			<span class="icon-toggle" x-text="iconText"></span>
+		</div>
+		<audio controls src="audio/aud_1.mp3" onclick="event.stopPropagation()">
+			<p class="muted">متصفحك لا يدعم الصوت.</p>
+		</audio>
+	</button>
+	<div x-show="open" x-transition class="accordion-panel">
+		<section>
+			<div class="qa" id="h2-أحكام-الذباحة" x-data="accordionItem(true)">
+				<div class="q-title flex justify-between items-center" @click="toggle()">
+					<span :style="{ 'fontSize': fontSize + 'px' }">أحكام الذباحة</span>
+					<span class="icon-toggle" x-text="iconText"></span>
+				</div>
+				<div class="a" x-show="open" x-transition>
+				<div id="h3-مسألة-1180" x-data="accordionItem(true)">
+					<div class="h3-content-title flex justify-between items-center" @click="toggle()">
+						<span :style="{ 'fontSize': fontSize + 'px' }">مسألة 1180</span>
+						<span class="icon-toggle" x-text="iconText"></span>
+					</div>
+					<div class="a" x-show="open" x-transition>
+					<p class="p-content" :style="{ 'fontSize': fontSize + 'px' }">الحيوان - وحشيّاً كان أم أهليّاً - غير المحرّم أكله ولو لعارض - وسيأتي بيان المحرّم أكله في أحكام الأطعمة والأشربة - <strong>إذا ذكّي بالذبح</strong> - على الترتيب الآتي في هذا الباب - وخرجت روحه <strong>يحلّ أكله</strong>. هذا في غير الإبل والسمك والجراد، وأمّا هذه الثلاثة فتذكّى بغير الذبح على ما سيتّضح في المسائل الآتية.</p>
+					</div>
+				</div>
+				<div id="h3-مسألة-1181" x-data="accordionItem(true)">
+					<div class="h3-content-title flex justify-between items-center" @click="toggle()">
+						<span :style="{ 'fontSize': fontSize + 'px' }">مسألة 1181</span>
+						<span class="icon-toggle" x-text="iconText"></span>
+					</div>
+					<div class="a" x-show="open" x-transition>
+					<p :style="{ 'fontSize': fontSize + 'px' }">الحيوان الوحشي المحلّل لحمه - كالغزال - والحيوان الأهلي المحلّل إذا استوحش - كالبقر - يحلّ لحمهما بالاصطياد أيضاً، وأمّا الحيوانات المحلّلة الأهليّة كالشاة والدجاجة والبقر غير المتوحّش ونحوها، وكذلك الحيوانات الوحشيّة إذا تأهّلت فلا يحكم بطهارة لحمها ولا بحليّتها بالاصطياد.</p>
+					</div>
+				</div>
+				<div id="h3-مسألة-1182" x-data="accordionItem(true)">
+					<div class="h3-content-title flex justify-between items-center" @click="toggle()">
+						<span :style="{ 'fontSize': fontSize + 'px' }">مسألة 1182</span>
+						<span class="icon-toggle" x-text="iconText"></span>
+					</div>
+					<div class="a" x-show="open" x-transition>
+					<p class="p-content" :style="{ 'fontSize': fontSize + 'px' }"><strong>الحيوان الوحشي</strong> الحلال أكله إنّما يحكم بحليته وطهارته <strong>بالاصطياد</strong> فيما إذا كان قادراً على العدو أو ناهضاً للطيران، فولد الوحش قبل أن يقدر على الفرار وفرخ الطير قبل أن ينهض للطيران لا يحلّان بالاصطياد ولا يحكم بطهارتهما حينئذٍ، فلو رمى ظبياً وولدَه غير القادر على العدو فماتا حلّ الظبي وحرم الولد.</p>
+					</div>
+				</div>
+				<div id="h3-مسألة-1183" x-data="accordionItem(true)">
+					<div class="h3-content-title flex justify-between items-center" @click="toggle()">
+						<span :style="{ 'fontSize': fontSize + 'px' }">مسألة 1183</span>
+						<span class="icon-toggle" x-text="iconText"></span>
+					</div>
+					<div class="a" x-show="open" x-transition>
+					<p :style="{ 'fontSize': fontSize + 'px' }">الحيوان المحلّل لحمه الذي ليست له نفس سائلة - كالسمك - إذا مات بغير تذكية حرم أكله، لكنّه طاهر.</p>
+					</div>
+				</div>
+				<div id="h3-مسألة-1184" x-data="accordionItem(true)">
+					<div class="h3-content-title flex justify-between items-center" @click="toggle()">
+						<span :style="{ 'fontSize': fontSize + 'px' }">مسألة 1184</span>
+						<span class="icon-toggle" x-text="iconText"></span>
+					</div>
+					<div class="a" x-show="open" x-transition>
+					<p :style="{ 'fontSize': fontSize + 'px' }">الحيوان المحرّم أكله إذا لم تكن له نفس سائلة - كالحيّة - لا أثر لذبحه أو صيده؛ لأن ميتته طاهرة.</p>
+					</div>
+				</div>
+				<div id="h3-مسألة-1185" x-data="accordionItem(true)">
+					<div class="h3-content-title flex justify-between items-center" @click="toggle()">
+						<span :style="{ 'fontSize': fontSize + 'px' }">مسألة 1185</span>
+						<span class="icon-toggle" x-text="iconText"></span>
+					</div>
+					<div class="a" x-show="open" x-transition>
+					<p class="p-content" :style="{ 'fontSize': fontSize + 'px' }"><strong>الكلب والخنزير لا يقبلان التذكية</strong>، فلا يحكم بطهارتهما ولا بحليتهما بالذبح أو الصيد.</p>
+					<p class="p-content" :style="{ 'fontSize': fontSize + 'px' }">وأمّا<strong> السباع</strong> - وهي: ما تفترس الحيوان وتأكل اللحم كالذئب والنمر - فهي <strong>قابلة للتذكية،</strong> فلو ذبحت أو اصطيدت بالرمي ونحوه حكم بطهارة لحومها وجلودها وإن لم يحلّ أكلها بذلك. نعم، إذا اصطيدت بالكلب الصائد ففي تذكيتها إشكال، فالأحوط لزوماً عدم طهارتها.</p>
+					</div>
+				</div>
+				<div id="h3-مسألة-1186" x-data="accordionItem(true)">
+					<div class="h3-content-title flex justify-between items-center" @click="toggle()">
+						<span :style="{ 'fontSize': fontSize + 'px' }">مسألة 1186</span>
+						<span class="icon-toggle" x-text="iconText"></span>
+					</div>
+					<div class="a" x-show="open" x-transition>
+					<p :style="{ 'fontSize': fontSize + 'px' }">لا يبعد أن يكون حكم القرد والفيل والدبّ حكم السباع فيما مرّ.</p>
+					<p class="p-content" :style="{ 'fontSize': fontSize + 'px' }">وأمّا <strong>الحشرات</strong> - والمقصود بها: <strong>الدواب الصغار التي تسكن باطن الأرض</strong> كالضبّ والفأر - فهي لا تقبل التذكية، فإن كانت لها نفس سائلة وذبحت - مثلاً - لم يحكم بطهارة لحومها وجلودها.</p>
+					</div>
+				</div>
+				<div id="h3-مسألة-1187" x-data="accordionItem(true)">
+					<div class="h3-content-title flex justify-between items-center" @click="toggle()">
+						<span :style="{ 'fontSize': fontSize + 'px' }">مسألة 1187</span>
+						<span class="icon-toggle" x-text="iconText"></span>
+					</div>
+					<div class="a" x-show="open" x-transition>
+					<p :style="{ 'fontSize': fontSize + 'px' }">لو خرج الجنين ميّتاً من بطن أمّه في حال حياتها لم يحلّ أكله.</p>
+					</div>
+				</div>
+				</div>
+			</div>
+			<div class="qa" id="h2-كيفية-الذبح" x-data="accordionItem(true)">
+				<div class="q-title flex justify-between items-center" @click="toggle()">
+					<span :style="{ 'fontSize': fontSize + 'px' }">كيفيّة الذبح</span>
+					<span class="icon-toggle" x-text="iconText"></span>
+				</div>
+				<div class="a" x-show="open" x-transition>
+				<div id="h3-مسألة-1188" x-data="accordionItem(true)">
+					<div class="h3-content-title flex justify-between items-center" @click="toggle()">
+						<span :style="{ 'fontSize': fontSize + 'px' }">مسألة 1188</span>
+						<span class="icon-toggle" x-text="iconText"></span>
+					</div>
+					<div class="a" x-show="open" x-transition>
+					<div class="qa" id="h4-الكيفية-المعتبرة-في-الذبح-هي" x-data="accordionItem(true)">
+						<h4 class="h4-content-title" @click="toggle()" :style="{ 'fontSize': fontSize + 'px' }">
+							الكيفيّة المعتبرة في الذبح هي:
+						</h4>
+						<div class="a" x-show="open" x-transition>
+						<p class="p-content" :style="{ 'fontSize': fontSize + 'px' }"> <strong>أن تُقطع الأوداج الأربعة تماماً،</strong> </p>
+						<p :style="{ 'fontSize': fontSize + 'px' }">فلا يكتفى - على الأحوط لزوماً - بشقّها عن قطعها ولا بقطع الحلقوم وحده، ولا يتحقّق قطع الأوداج إلّا إذا كان القطع من تحت العقدة المسمّاة بـ «الجوزة».</p>
+						</div>
+					</div>
+					<div class="qa" id="h4-والأوداج-الأربع-هي" x-data="accordionItem(true)">
+						<h4 class="h4-content-title" @click="toggle()" :style="{ 'fontSize': fontSize + 'px' }">
+							والأوداج الأربع هي:
+						</h4>
+						<div class="a" x-show="open" x-transition>
+						<p :style="{ 'fontSize': fontSize + 'px' }"> المريء (مجرى الطعام والشراب)، والحلقوم (مجرى النَفَس)، والعرقان الغليظان المحيطان بالحلقوم.</p>
+						</div>
+					</div>
+					</div>
+				</div>
+				<div id="h3-مسألة-1189" x-data="accordionItem(true)">
+					<div class="h3-content-title flex justify-between items-center" @click="toggle()">
+						<span :style="{ 'fontSize': fontSize + 'px' }">مسألة 1189</span>
+						<span class="icon-toggle" x-text="iconText"></span>
+					</div>
+					<div class="a" x-show="open" x-transition>
+					<p class="p-content" :style="{ 'fontSize': fontSize + 'px' }"><strong>يعتبر في قطع الأوداج الأربعة</strong> - بالإضافة إلى قصد الذبح به - أن يكون في حال حياة الحيوان، فلو قطع الذابح بعضها وأرسله فمات لم يؤثّر قطع الباقي.</p>
+					<p :style="{ 'fontSize': fontSize + 'px' }">ولا يعتبر فيه التتابع، فلو قطع الأوداج قبل زهوق روح الحيوان إلّا أنّه فصل بينها بما هو خارج عن المتعارف المعتاد لم يضرّ بحليّته.</p>
+					</div>
+				</div>
+				<div id="h3-مسألة-1190" x-data="accordionItem(true)">
+					<div class="h3-content-title flex justify-between items-center" @click="toggle()">
+						<span :style="{ 'fontSize': fontSize + 'px' }">مسألة 1190</span>
+						<span class="icon-toggle" x-text="iconText"></span>
+					</div>
+					<div class="a" x-show="open" x-transition>
+					<p class="p-content" :style="{ 'fontSize': fontSize + 'px' }"><strong>لو قُطعت الأوداج الأربعة على غير النهج الشرعي</strong> - كأن ضربها شخص بآلة فانقطعت أو عضّها الذئب فقطعها بأسنانه أو غير ذلك - وبقيت حياة الحيوان فإن لم يبق شيء من الأوداج أصلاً أو لم يبق شيء من الحلقوم يصلح للذبح فلا يحلّ أكله، وهكذا إذا بقي مقدار من الجميع معلّقاً بالرأس أو متّصلاً بالبدن على الأحوط لزوماً. نعم، إذا كان المقطوع غير المَذْبَح وكان الحيوان حيّاً حلّ أكله بالذبح.</p>
+					</div>
+				</div>
+				</div>
+			</div>
+			<div class="qa" id="h2-شروط-الذبح" x-data="accordionItem(true)">
+				<div class="q-title flex justify-between items-center" @click="toggle()">
+					<span :style="{ 'fontSize': fontSize + 'px' }">شروط الذبح</span>
+					<span class="icon-toggle" x-text="iconText"></span>
+				</div>
+				<div class="a" x-show="open" x-transition>
+				<div id="h3-مسألة-1191" x-data="accordionItem(true)">
+					<div class="h3-content-title flex justify-between items-center" @click="toggle()">
+						<span :style="{ 'fontSize': fontSize + 'px' }">مسألة 1191</span>
+						<span class="icon-toggle" x-text="iconText"></span>
+					</div>
+					<div class="a" x-show="open" x-transition>
+					<div class="qa" id="h4-يشترط-في-تذكية-الذبيحة-أمور" x-data="accordionItem(true)">
+						<h4 class="h4-content-title" @click="toggle()" :style="{ 'fontSize': fontSize + 'px' }">
+							يشترط في تذكية الذبيحة أمور:
+						</h4>
+						<div class="a" x-show="open" x-transition>
+						<div class="qa" id="h5-الأول-أن-يكون-الذابح-مسلما" x-data="accordionItem(true)">
+							<h5 class="h5-content-title" @click="toggle()" :style="{ 'fontSize': fontSize + 'px' }">
+								الأوّل: أن يكون الذابح مسلماً
+							</h5>
+							<div class="a" x-show="open" x-transition>
+							<p :style="{ 'fontSize': fontSize + 'px' }">- رجلاً كان أو امرأة أو صبيّاً مميّزاً - فلا تحلّ ذبيحة غير المسلم، حتّى الكافر الكتابي وإن سمّى على الأحوط لزوماً، كما لا تحلّ ذبيحة المنتحلين للإسلام المحكومين بالكفر، ومنهم الناصب المعلن بعداوة أهل البيت (عليهم السلام).</p>
+							</div>
+						</div>
+						<div class="qa" id="h5-الثاني-أن-يكون-الذبح-بالحديد-م" x-data="accordionItem(true)">
+							<h5 class="h5-content-title" @click="toggle()" :style="{ 'fontSize': fontSize + 'px' }">
+								الثاني: أن يكون الذبح بالحديد مع الإمكان،
+							</h5>
+							<div class="a" x-show="open" x-transition>
+							<p :style="{ 'fontSize': fontSize + 'px' }">فلا يكفي الذبح بغيره حتّى الحديد المخلوط بالكروم ونحوه المسمّى بـ «الإستيل» على الأحوط لزوماً. نعم، من ذبح به عن نسيان أو جهل يعذر فيه حلّت ذبيحته.</p>
+							<p :style="{ 'fontSize': fontSize + 'px' }">وإذا لم يوجد الحديد جاز ذبحها بكلّ ما يقطع الأوداج من الزجاجة والحجارة الحادّة ونحوهما، حتّى إذا لم تكن هناك ضرورة تدعو إلى الاستعجال في ذبحها كالخوف من تلفها بالتأخير.</p>
+							</div>
+						</div>
+						<div class="qa" id="h5-الثالث-الاستقبال-بالذبيحة-حال-" x-data="accordionItem(true)">
+							<h5 class="h5-content-title" @click="toggle()" :style="{ 'fontSize': fontSize + 'px' }">
+								الثالث: الاستقبال بالذبيحة حال الذبح إلى القبلة.
+							</h5>
+							<div class="a" x-show="open" x-transition>
+							<p :style="{ 'fontSize': fontSize + 'px' }">ويتحقّق الاستقبال فيما إذا كان الحيوان قائماً أو قاعداً بما يتحقّق به استقبال الإنسان حال الصلاة في الحالتين، وأمّا إذا كان مضطجعاً على الأيمن أو الأيسر فيتحقّق باستقبال المنحر والبطن، ولا يعتبر استقبال الوجه واليدين والرجلين.</p>
+							<p :style="{ 'fontSize': fontSize + 'px' }">وتحرم الذبيحة بالإخلال بالاستقبال متعمّداً، ولا بأس بتركه نسياناً أو خطأً، أو للجهل بالاشتراط كمن لا يعتقد لزومه شرعاً، أو لعدم العلم بجهتها، أو عدم التمكّن من توجيه الذبيحة إليها ولو من جهة خوف موت الذبيحة لو اشتغل بتوجيهها إلى القبلة.</p>
+							</div>
+						</div>
+						<div class="qa" id="h5-الرابع-التسمية" x-data="accordionItem(true)">
+							<h5 class="h5-content-title" @click="toggle()" :style="{ 'fontSize': fontSize + 'px' }">
+								الرابع: التسمية،
+							</h5>
+							<div class="a" x-show="open" x-transition>
+							<p :style="{ 'fontSize': fontSize + 'px' }">بأن يذكر الذابح اسم الله وحده عليها بنيّة الذبح حين الشروع فيه أو متّصلاً به عرفاً. ويكفي في التسمية الإتيان بذكر الله تعالى مقترناً بالتعظيم مثل: (الله أكبر) و(بسم الله)، بل يكتفى بمجرّد ذكر لفظ الجلالة ولو بما يرادفه في سائر اللغات، كما يكتفى بذكر بقيّة الأسماء الحسنى وإن كان الأحوط استحباباً عدم الاكتفاء بذلك. ولا أثر للتسمية من دون نيّة الذبح. ولو أخلّ بها نسياناً لم تحرم الذبيحة، ولو تركها جهلاً حرمت.</p>
+							</div>
+						</div>
+						<div class="qa" id="h5-الخامس-خروج-الدم-المتعارف" x-data="accordionItem(true)">
+							<h5 class="h5-content-title" @click="toggle()" :style="{ 'fontSize': fontSize + 'px' }">
+								الخامس: خروج الدم المتعارف،
+							</h5>
+							<div class="a" x-show="open" x-transition>
+							<p :style="{ 'fontSize': fontSize + 'px' }">فلا تحلّ إذا لم يخرج منها الدم، أو كان الخارج قليلاً بالإضافة إلى نوعها بسبب انجماد الدم في عروقها أو نحوه. وأمّا إذا كانت قلّته لأجل سبق نزيف الذبيحة - لجرح مثلاً - لم يضرّ ذلك بتذكيتها.</p>
+							</div>
+						</div>
+						<div class="qa" id="h5-السادس-أن-تتحرك-الذبيحة-بعد-تم" x-data="accordionItem(true)">
+							<h5 class="h5-content-title" @click="toggle()" :style="{ 'fontSize': fontSize + 'px' }">
+								السادس: أن تتحرّك الذبيحة بعد تماميّة الذبح ولو حركة يسيرة،
+							</h5>
+							<div class="a" x-show="open" x-transition>
+							<p :style="{ 'fontSize': fontSize + 'px' }">بأن تطرف عينُها أو تحرّك ذنبها أو تركض برجلها. هذا فيما إذا شكّ في حياتها حال الذبح، وإلّا فلا تعتبر الحركة أصلاً.</p>
+							</div>
+						</div>
+						</div>
+					</div>
+					</div>
+				</div>
+				<div id="h3-مسألة-1192" x-data="accordionItem(true)">
+					<div class="h3-content-title flex justify-between items-center" @click="toggle()">
+						<span :style="{ 'fontSize': fontSize + 'px' }">مسألة 1192</span>
+						<span class="icon-toggle" x-text="iconText"></span>
+					</div>
+					<div class="a" x-show="open" x-transition>
+					<p :style="{ 'fontSize': fontSize + 'px' }">الأحوط لزوماً عدم إبانة الرأس عمداً قبل خروج الروح من الذبيحة، وإن كانت لا تحرم بذلك. ولا فرق في ذلك بين الطيور وغيرها.</p>
+					<p :style="{ 'fontSize': fontSize + 'px' }">كما أنّ الأحوط لزوماً عدم كسر رقبة الذبيحة أو إصابة نخاعها عمداً قبل أن تموت، وإن لم تحرم بذلك أيضاً. والنخاع هو: الخيط الأبيض الممتدّ في وسط الفقار من الرقبة إلى الذنب.</p>
+					<p :style="{ 'fontSize': fontSize + 'px' }">والأحوط استحباباً أن يكون الذبح في المذبح من القدّام وإن جاز الذبح من القفا أيضاً، كما أن الأحوط استحباباً وضع السكين على المذبح ثُمَّ قطع الأوداج، وإن كان يكفي أيضاً إدخال السكين تحت الأوداج ثُمَّ قطعها من فوق.</p>
+					</div>
+				</div>
+				</div>
+			</div>
+			<div class="qa" id="h2-نحر-الإبل" x-data="accordionItem(true)">
+				<div class="q-title flex justify-between items-center" @click="toggle()">
+					<span :style="{ 'fontSize': fontSize + 'px' }">نحر الإبل</span>
+					<span class="icon-toggle" x-text="iconText"></span>
+				</div>
+				<div class="a" x-show="open" x-transition>
+				<div id="h3-مسألة-1193" x-data="accordionItem(true)">
+					<div class="h3-content-title flex justify-between items-center" @click="toggle()">
+						<span :style="{ 'fontSize': fontSize + 'px' }">مسألة 1193</span>
+						<span class="icon-toggle" x-text="iconText"></span>
+					</div>
+					<div class="a" x-show="open" x-transition>
+					<p :style="{ 'fontSize': fontSize + 'px' }">يعتبر في حليّة لحم الإبِل وطهارته - مضافاً إلى الشروط الستّة المتقدّمة في الذبح - أن تُنحر، بأن يُدخِل سكّيناً أو رمحاً أو غيرهما من الآلات الحادّة الحديدية في لَبَّتِها، وهي: الموضع المنخفض الواقع بين أصل العنق والصدر.</p>
+					</div>
+				</div>
+				<div id="h3-مسألة-1194" x-data="accordionItem(true)">
+					<div class="h3-content-title flex justify-between items-center" @click="toggle()">
+						<span :style="{ 'fontSize': fontSize + 'px' }">مسألة 1194</span>
+						<span class="icon-toggle" x-text="iconText"></span>
+					</div>
+					<div class="a" x-show="open" x-transition>
+					<p :style="{ 'fontSize': fontSize + 'px' }">يجوز نحر الإبل قائمة وباركة وساقطة على جنبها، والأولى نحرها قائمة.</p>
+					</div>
+				</div>
+				<div id="h3-مسألة-1195" x-data="accordionItem(true)">
+					<div class="h3-content-title flex justify-between items-center" @click="toggle()">
+						<span :style="{ 'fontSize': fontSize + 'px' }">مسألة 1195</span>
+						<span class="icon-toggle" x-text="iconText"></span>
+					</div>
+					<div class="a" x-show="open" x-transition>
+					<p :style="{ 'fontSize': fontSize + 'px' }">لو ذبح الإبل بدلاً عن نحرها أو نحر الشاة أو البقرة أو نحوهما بدلاً عن ذبحها حرم لحمها وحكم بنجاستها. نعم، لو قطع الأوداج الأربعة من الإبل ثُمَّ نحرها قبل زهوق روحها أو نحر الشاة - مثلاً - ثُمَّ ذبحها قبل أن تموت حلّ لحمهما وحكم بطهارتهما.</p>
+					</div>
+				</div>
+				<div id="h3-مسألة-1196" x-data="accordionItem(true)">
+					<div class="h3-content-title flex justify-between items-center" @click="toggle()">
+						<span :style="{ 'fontSize': fontSize + 'px' }">مسألة 1196</span>
+						<span class="icon-toggle" x-text="iconText"></span>
+					</div>
+					<div class="a" x-show="open" x-transition>
+					<p :style="{ 'fontSize': fontSize + 'px' }">لو تعذّر ذبح الحيوان أو نحره - لاستعصائه أو لوقوعه في بئر أو موضع ضيّق لا يتمكّن من الوصول إلى موضع ذكاته وخيف موته هناك - جاز أن يعقره في غير موضع الذكاة بشيء من الرمح والسكّين ونحوهما، فإذا مات بذلك العقر طهر وحلّ أكله. وتسقط فيه شرطيّة الاستقبال. نعم، لا بُدَّ من أن يكون واجداً لسائر الشروط المعتبرة في التذكية.</p>
+					</div>
+				</div>
+				</div>
+			</div>
+			<div class="qa" id="h2-آداب-الذباحة-والنحر" x-data="accordionItem(true)">
+				<div class="q-title flex justify-between items-center" @click="toggle()">
+					<span :style="{ 'fontSize': fontSize + 'px' }">آداب الذباحة والنحر</span>
+					<span class="icon-toggle" x-text="iconText"></span>
+				</div>
+				<div class="a" x-show="open" x-transition>
+				<div id="h3-مسألة-1197" x-data="accordionItem(true)">
+					<div class="h3-content-title flex justify-between items-center" @click="toggle()">
+						<span :style="{ 'fontSize': fontSize + 'px' }">مسألة 1197</span>
+						<span class="icon-toggle" x-text="iconText"></span>
+					</div>
+					<div class="a" x-show="open" x-transition>
+					<p class="p-content" :style="{ 'fontSize': fontSize + 'px' }"><strong>ذكر الفقهاء (رضوان الله عليهم)</strong> أنّه يستحبّ :</p>
+					<div class="qa" id="h5-عند-ذبح-الغنم" x-data="accordionItem(true)">
+						<h5 class="h5-content-title" @click="toggle()" :style="{ 'fontSize': fontSize + 'px' }">
+							عند ذبح الغنم
+						</h5>
+						<div class="a" x-show="open" x-transition>
+						<p :style="{ 'fontSize': fontSize + 'px' }">أن تربط يداه وإحدى رجليه وتطلق الأخرى، ويمسك صوفه أو شعره حتّى يبرد.</p>
+						</div>
+					</div>
+					<div class="qa" id="h5-عند-ذبح-البقر" x-data="accordionItem(true)">
+						<h5 class="h5-content-title" @click="toggle()" :style="{ 'fontSize': fontSize + 'px' }">
+							عند ذبح البقر
+						</h5>
+						<div class="a" x-show="open" x-transition>
+						<p :style="{ 'fontSize': fontSize + 'px' }">أن تعقل يداه ورجلاه ويطلق ذنبه.</p>
+						</div>
+					</div>
+					<div class="qa" id="h5-عند-نحر-الإبل" x-data="accordionItem(true)">
+						<h5 class="h5-content-title" @click="toggle()" :style="{ 'fontSize': fontSize + 'px' }">
+							عند نحر الإبل
+						</h5>
+						<div class="a" x-show="open" x-transition>
+						<p :style="{ 'fontSize': fontSize + 'px' }">أن تربط يداها ما بين الخفّين إلى الركبتين أو إلى الإبطين، وتطلق رجلاها. هذا إذا نحرت باركةً، أمّا إذا نحرت قائمة فينبغي أن تكون يدها اليسرى معقولة.</p>
+						</div>
+					</div>
+					<div class="qa" id="h5-عند-ذبح-الطير" x-data="accordionItem(true)">
+						<h5 class="h5-content-title" @click="toggle()" :style="{ 'fontSize': fontSize + 'px' }">
+							عند ذبح الطير
+						</h5>
+						<div class="a" x-show="open" x-transition>
+						<p :style="{ 'fontSize': fontSize + 'px' }">أن يرسل بعد الذباحة حتّى يرفرف.</p>
+						</div>
+					</div>
+					<div class="qa" id="h5-ويستحب" x-data="accordionItem(true)">
+						<h5 class="h5-content-title" @click="toggle()" :style="{ 'fontSize': fontSize + 'px' }">
+							ويستحبّ
+						</h5>
+						<div class="a" x-show="open" x-transition>
+						<p :style="{ 'fontSize': fontSize + 'px' }">عرض الماء على الحيوان قبل أن يذبح أو ينحر، </p>
+						<p :style="{ 'fontSize': fontSize + 'px' }">ويستحبّ أن يعامل مع الحيوان عند ذبحه أو نحره ما يبعده عن الأذى والتعذيب، بأن يحدّ الشفرة ويمرّ السكّين على المذبح بقوّة ويجدّ في الإسراع وغير ذلك.</p>
+						</div>
+					</div>
+					</div>
+				</div>
+				</div>
+			</div>
+			<div class="qa" id="h2-مكروهات-الذباحة-والنحر" x-data="accordionItem(true)">
+				<div class="q-title flex justify-between items-center" @click="toggle()">
+					<span :style="{ 'fontSize': fontSize + 'px' }">مكروهات الذباحة والنحر</span>
+					<span class="icon-toggle" x-text="iconText"></span>
+				</div>
+				<div class="a" x-show="open" x-transition>
+				<div id="h3-مسألة-1198" x-data="accordionItem(true)">
+					<div class="h3-content-title flex justify-between items-center" @click="toggle()">
+						<span :style="{ 'fontSize': fontSize + 'px' }">مسألة 1198</span>
+						<span class="icon-toggle" x-text="iconText"></span>
+					</div>
+					<div class="a" x-show="open" x-transition>
+					<p :style="{ 'fontSize': fontSize + 'px' }">يكره في ذبح الحيوانات ونحرها - كما ورد في جملة من الروايات - أمور:</p>
+					<div class="qa" id="h5-الأول-سلخ-جلد-الذبيحة-قبل-خروج" x-data="accordionItem(true)">
+						<h5 class="h5-content-title" @click="toggle()" :style="{ 'fontSize': fontSize + 'px' }">
+							الأوّل: سلخ جلد الذبيحة قبل خروج روحها.
+						</h5>
+						<div class="a" x-show="open" x-transition>
+						</div>
+					</div>
+					<div class="qa" id="h5-الثاني-أن-تكون-الذباحة-في-اللي" x-data="accordionItem(true)">
+						<h5 class="h5-content-title" @click="toggle()" :style="{ 'fontSize': fontSize + 'px' }">
+							الثاني: أن تكون الذباحة في الليل أو في يوم الجمعة قبل الزوال من دون حاجة.
+						</h5>
+						<div class="a" x-show="open" x-transition>
+						</div>
+					</div>
+					<div class="qa" id="h5-الثالث-أن-تكون-الذباحة-بمنظر-م" x-data="accordionItem(true)">
+						<h5 class="h5-content-title" @click="toggle()" :style="{ 'fontSize': fontSize + 'px' }">
+							الثالث: أن تكون الذباحة بمنظر من حيوان آخر من جنسه.
+						</h5>
+						<div class="a" x-show="open" x-transition>
+						</div>
+					</div>
+					<div class="qa" id="h5-الرابع-أن-يذبح-ما-رباه-بيده-من" x-data="accordionItem(true)">
+						<h5 class="h5-content-title" @click="toggle()" :style="{ 'fontSize': fontSize + 'px' }">
+							الرابع: أن يذبح ما ربّاه بيده من النَّعم.
+						</h5>
+						<div class="a" x-show="open" x-transition>
+						</div>
+					</div>
+					</div>
+				</div>
+				</div>
+			</div>
+		</section>
+	</div>
 </div>
-<div class="main-width-container pt-2">
-  <div class="page-title-card">
-    <h1>تاريخ الإسلام</h1>
-  </div>
-
-    <div class="container-main w-full text-center">
-
-        <div class="grid grid-cols-2 lg:grid-cols-3 gap-6">
-
-            <a href="pages/source-text.html" class="btn-quiz block p-6 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 text-white shadow-lg flex flex-col justify-center">
-                <p class="text-2xl font-bold mb-1">النـص</p>
-                <p class="text-sm opacity-90 mt-1">مراجعة للنص</p>
-            </a>
-            <a href="pages/mindmap.html" class="btn-quiz block p-6 rounded-xl bg-gradient-to-br from-sky-500 to-blue-600 text-white shadow-lg flex flex-col justify-center">
-                <p class="text-2xl font-bold mb-1">خريطة ذهنية</p>
-                <p class="text-sm opacity-90 mt-1">ملخص شجري تفاعلي</p>
-            </a>
-            <a href="pages/mindmap_interactive.html" class="btn-quiz block p-6 rounded-xl bg-gradient-to-br from-slate-500 to-gray-600 text-white shadow-lg flex flex-col justify-center">
-                <p class="text-2xl font-bold mb-1">خريطة ذهنية تفاعلية</p>
-                <p class="text-sm opacity-90 mt-1">خريطة ذهنية تفاعلية بنظام الشجرة</p>
-            </a>
-
-            <a href="pages/qz-true-false.html" class="btn-quiz block p-6 rounded-xl bg-gradient-to-br from-green-600 to-emerald-700 text-white shadow-lg">
-                <p class="text-2xl font-bold mb-1">صواب / خطأ</p>
-                <p class="text-sm opacity-90 mt-1">التحقق السريع من صحة العبارات.</p>
-            </a>
-
-            <a href="pages/qz-mc-in.html" class="btn-quiz block p-6 rounded-xl bg-gradient-to-br from-indigo-600 to-blue-700 text-white shadow-lg">
-                <p class="text-2xl font-bold mb-1">اختبار تفاعلي</p>
-                <p class="text-sm opacity-90 mt-1">اختبار تفاعلي معزز</p>
-            </a>
-
-            <a href="pages/card-flip.html" class="btn-quiz block p-6 rounded-xl bg-gradient-to-br from-pink-600 to-rose-700 text-white shadow-lg">
-                <p class="text-2xl font-bold mb-1">بطاقات مراجعة</p>
-                <p class="text-sm opacity-90 mt-1">بطاقات تذكيرية للمراجعة</p>
-            </a>
-
-            <a href="pages/qz-fill-blank.html" class="btn-quiz block p-6 rounded-xl bg-gradient-to-br from-orange-600 to-red-700 text-white shadow-lg">
-                <p class="text-2xl font-bold mb-1">املأ الفراغ</p>
-                <p class="text-sm opacity-90 mt-1">ملأ الفراغ المناسب</p>
-            </a>
-
-            <a href="pages/qz-comparison.html" class="btn-quiz block p-6 rounded-xl bg-gradient-to-br from-purple-600 to-indigo-700 text-white shadow-lg">
-                <p class="text-2xl font-bold mb-1">اختيار مقارنة</p>
-                <p class="text-sm opacity-90 mt-1">تعبئة حقول المقارنات</p>
-            </a>
-            </div>
-        
-        <footer class="mt-12 pt-6 border-t border-Black-300">
-        </footer>
-
+      </article>
     </div>
-</body>
+ </div> 
 
+<script src="js/script_source-text.js"></script>
+<script src="js/nav-loader.js"></script>
+<script src="js/page-init.js"></script> 
+<script>
+    // Initialize the Navbar
+    document.addEventListener('DOMContentLoaded', function() {
+        loadNavbar({ 
+            pageType: 'root',
+            showTools: true // Make sure this is true to see the gear icon
+        });
+    });
+</script>
+  </body>
 </html>
-
 
