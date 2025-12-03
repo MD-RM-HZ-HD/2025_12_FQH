@@ -93,6 +93,21 @@ class ToolsManager {
       /* Moon State */
       .moon-icon { opacity: 0; color: #f59e0b; fill: currentColor; }
       html.dark .moon-icon { opacity: 1; }
+
+      /* === MOBILE POPUP POSITIONING FIX: Centered on screen === */
+      .mobile-popup-sheet {
+        position: fixed;
+        bottom: 60px; /* Above the fixed mobile nav bar */
+        left: 50%; /* New: Position to the center of the screen */
+        transform: translateX(-50%); /* New: Pull back by 50% of its own width for true centering */
+        background-color: #38a169; 
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        padding: 8px 0;
+        z-index: 40;
+        min-width: 160px;
+        /* Remove old specific positioning classes here */
+      }
     `;
     document.head.appendChild(style);
   }
@@ -201,8 +216,9 @@ function loadNavbar(options = {}) {
         const isQuizActive = currentPath.includes('qz-') || currentPath.includes('card-flip');
         
         // HTML for Popups (Arabic)
+        // 🛠️ FIX: Removed specific positioning class to use the new centered 'mobile-popup-sheet' class
         const quizPopup = `
-        <div x-show="activePopup === 'quiz'" @click.away="activePopup = null" class="mobile-popup-sheet popup-pos-center" x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0 transform scale-95" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-95" style="display: none;">
+        <div x-show="activePopup === 'quiz'" @click.away="activePopup = null" class="mobile-popup-sheet" x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0 transform scale-95" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-95" style="display: none;">
             <a href="${buildPath('qz-true-false.html', pageType)}" class="mobile-popup-link">صواب / خطأ</a>
             <a href="${buildPath('qz-mc-in.html', pageType)}" class="mobile-popup-link">اختيار متعدد</a>
             <a href="${buildPath('qz-fill-blank.html', pageType)}" class="mobile-popup-link">املأ الفراغ</a>
@@ -210,14 +226,16 @@ function loadNavbar(options = {}) {
             <a href="${buildPath('qz-comparison.html', pageType)}" class="mobile-popup-link">جدول المقارنة</a>
         </div>`;
 
+        // 🛠️ FIX: Removed specific positioning class to use the new centered 'mobile-popup-sheet' class
         const mindmapPopup = `
-        <div x-show="activePopup === 'mindmap'" @click.away="activePopup = null" class="mobile-popup-sheet popup-pos-center" x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0 transform scale-95" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-95" style="display: none;">
+        <div x-show="activePopup === 'mindmap'" @click.away="activePopup = null" class="mobile-popup-sheet" x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0 transform scale-95" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-95" style="display: none;">
             <a href="${buildPath('mindmap.html', pageType)}" class="mobile-popup-link">خريطة ذهنية</a>
             <a href="${buildPath('mindmap_interactive.html', pageType)}" class="mobile-popup-link">خريطة تفاعلية</a>
         </div>`;
         
+        // 🛠️ FIX: Removed specific positioning class to use the new centered 'mobile-popup-sheet' class
         const settingsPopup = `
-        <div x-show="activePopup === 'tools'" @click.away="activePopup = null" class="mobile-popup-sheet popup-pos-center" x-transition>
+        <div x-show="activePopup === 'tools'" @click.away="activePopup = null" class="mobile-popup-sheet" x-transition>
             <div class="tools-row">
                 <button @click="$dispatch('expand-all'); activePopup = null" class="tool-circle-btn tool-full-btn" style="width: 45%; border-radius: 20px; font-size: 11px;">
                     + توسيع الكل
