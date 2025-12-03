@@ -629,35 +629,10 @@ h1, h2, h3, h4, h5, h6 {
     padding-top: 2.25rem !important;    /* أصبح 16px بدلاً من 32px */
     padding-bottom: 1rem !important; /* للحفاظ على التناسق */
 }
-@media (max-width: 767px) {
 
-    /* ONE COLUMN LAYOUT ON MOBILE */
-    .grid {
-        grid-template-columns: 1fr !important;
-    }
-
-    /* FULL WIDTH CARDS */
     .comparison-box {
         width: 100% !important;
         max-width: 100% !important;
         margin: 0 !important;
         box-sizing: border-box !important;
     }
-
-    /* REMOVE EXTRA PADDINGS */
-    .question-card,
-    .container-main {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-    }
-
-    /* TEXT SAFETY */
-    .comparison-box textarea,
-    .comparison-box p,
-    .comparison-box h3 {
-        overflow-wrap: break-word !important;
-        word-break: break-word !important;
-        white-space: normal !important;
-    }
-}
-
