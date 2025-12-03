@@ -628,4 +628,12 @@ h1, h2, h3, h4, h5, h6 {
 #card-and-buttons-container {
     padding-top: 2.25rem !important;    /* أصبح 16px بدلاً من 32px */
     padding-bottom: 1rem !important; /* للحفاظ على التناسق */
+/* ==========================================================================
+   16. Global
+   ========================================================================== */
+   .card-content, .comparison-card, .option-card {
+    overflow-wrap: break-word !important;
+    white-space: normal !important;
+}
+
 }
