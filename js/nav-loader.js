@@ -202,7 +202,7 @@ function loadNavbar(options = {}) {
         
         // HTML for Popups (Arabic)
         const quizPopup = `
-        <div x-show="activePopup === 'quiz'" @click.away="activePopup = null" class="mobile-popup-sheet popup-anchor-right" x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0 transform scale-95" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-95" style="display: none;">
+        <div x-show="activePopup === 'quiz'" @click.away="activePopup = null" class="mobile-popup-sheet popup-pos-center" x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0 transform scale-95" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-95" style="display: none;">
             <a href="${buildPath('qz-true-false.html', pageType)}" class="mobile-popup-link">صواب / خطأ</a>
             <a href="${buildPath('qz-mc-in.html', pageType)}" class="mobile-popup-link">اختيار متعدد</a>
             <a href="${buildPath('qz-fill-blank.html', pageType)}" class="mobile-popup-link">املأ الفراغ</a>
@@ -211,7 +211,7 @@ function loadNavbar(options = {}) {
         </div>`;
 
         const mindmapPopup = `
-        <div x-show="activePopup === 'mindmap'" @click.away="activePopup = null" class="mobile-popup-sheet popup-anchor-left" x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0 transform scale-95" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-95" style="display: none;">
+        <div x-show="activePopup === 'mindmap'" @click.away="activePopup = null" class="mobile-popup-sheet popup-pos-center" x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0 transform scale-95" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-100" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-95" style="display: none;">
             <a href="${buildPath('mindmap.html', pageType)}" class="mobile-popup-link">خريطة ذهنية</a>
             <a href="${buildPath('mindmap_interactive.html', pageType)}" class="mobile-popup-link">خريطة تفاعلية</a>
         </div>`;
@@ -247,19 +247,12 @@ function loadNavbar(options = {}) {
             ${settingsPopup}
 
             <nav id="mobile-bottom-nav">
-                <button @click.stop="activePopup = (activePopup === 'tools' ? null : 'tools')" class="mobile-nav-item" :class="{ 'active-tab': activePopup === 'tools' }">
+                <a href="${buildPath('index.html', pageType)}" @click="activePopup = null" class="mobile-nav-item ${isHomeActive ? 'active-tab' : ''}">
                     <span class="icon-container">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
                     </span>
-                    <span class="label-text">إعدادات</span>
-                </button>
-                
-                <button @click.stop="activePopup = (activePopup === 'mindmap' ? null : 'mindmap')" class="mobile-nav-item" :class="{'active-tab': activePopup === 'mindmap' || (!activePopup && ${isMindMapActive})}">
-                    <span class="icon-container">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h1m5 10v-1m10-5h-1M10 3v1m-4 1.75l.7.7M16.25 15.5l.7.7M7.75 16.25l.7-.7M16.25 7.75l.7-.7M12 15a3 3 0 100-6 3 3 0 000 6z" /></svg>
-                    </span>
-                    <span class="label-text">خرائط</span>
-                </button>
+                    <span class="label-text">الرئيسية</span>
+                </a>
                 
                 <button @click.stop="activePopup = (activePopup === 'quiz' ? null : 'quiz')" class="mobile-nav-item" :class="{'active-tab': activePopup === 'quiz' || (!activePopup && ${isQuizActive})}">
                     <span class="icon-container">
@@ -268,12 +261,19 @@ function loadNavbar(options = {}) {
                     <span class="label-text">اختبارات</span>
                 </button>
 
-                <a href="${buildPath('index.html', pageType)}" @click="activePopup = null" class="mobile-nav-item ${isHomeActive ? 'active-tab' : ''}">
+                <button @click.stop="activePopup = (activePopup === 'mindmap' ? null : 'mindmap')" class="mobile-nav-item" :class="{'active-tab': activePopup === 'mindmap' || (!activePopup && ${isMindMapActive})}">
                     <span class="icon-container">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h1m5 10v-1m10-5h-1M10 3v1m-4 1.75l.7.7M16.25 15.5l.7.7M7.75 16.25l.7-.7M16.25 7.75l.7-.7M12 15a3 3 0 100-6 3 3 0 000 6z" /></svg>
                     </span>
-                    <span class="label-text">الرئيسية</span>
-                </a>
+                    <span class="label-text">خرائط</span>
+                </button>
+                
+                <button @click.stop="activePopup = (activePopup === 'tools' ? null : 'tools')" class="mobile-nav-item" :class="{ 'active-tab': activePopup === 'tools' }">
+                    <span class="icon-container">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                    </span>
+                    <span class="label-text">إعدادات</span>
+                </button>
             </nav>
         </div>`;
     } else {
